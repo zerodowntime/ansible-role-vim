@@ -1,0 +1,48 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+
+lint:
+  name: yamllint
+
+platforms:
+  - name: centos7
+    box: centos/7
+    interfaces:
+      - network_name: private_network
+        type: static
+        auto_config: true
+        ip: 192.168.50.200
+    groups:
+      - centos
+
+provisioner:
+  name: ansible
+  playbooks:
+    converge: playbook.yml
+  lint:
+    name: ansible-lint
+
+
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - converge
+    - idempotence
+    - verify
+    - destroy
+
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

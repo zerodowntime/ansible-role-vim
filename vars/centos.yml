@@ -1,0 +1,10 @@
+---
+# zerodowntime.vim/vars/main.yml
+
+# vim__vimrc_config: string
+# vimrc config file
+vim__vimrc_config: /etc/vimrc
+
+# vim__def_package_name: string
+# default package name to install
+vim__def_package_name: vim-minimal

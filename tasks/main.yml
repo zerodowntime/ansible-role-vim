@@ -1,0 +1,41 @@
+---
+# zerodowntime.vim/tasks/main.yml
+
+
+- name: vim | include os specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower }}.yml"
+  tags:
+    - always
+    - vim
+
+
+- name: vim | install packages
+  become: true
+  package:
+    name: "{{ vim__package_name }}"
+    state: "{{ vim__package_state }}"
+  register: vim___install
+  until: vim___install is success
+  retries: 3
+  delay: 2
+  tags:
+    - vim
+    - vim::install
+
+
+- name: vim | global vimrc template
+  template:
+    src: templates/vimrc
+    dest: "{{ vim__vimrc_config }}"
+    owner: root
+    group: root
+    mode: 0644
+    seuser: system_u
+    serole: object_r
+    setype: etc_t
+  when: (vim__rc is defined) and (vim__rc is not none)
+  tags:
+    - vim
+    - vim::configure

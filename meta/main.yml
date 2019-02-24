@@ -1,0 +1,23 @@
+---
+# zerodowntime.vim/meta/main.yml
+
+dependencies:
+  - role: zerodowntime.environment
+    environment__env:
+      EDITOR: vim
+    when: vim__env_editor
+
+galaxy_info:
+  role_name: vim
+  author: ZeroDowntime
+  description: install vim editor
+  company: ZeroDowntime Sp. z o.o.
+  license: Apache License 2.0
+  min_ansible_version: 2.5
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags:
+    - editor
+    - vim

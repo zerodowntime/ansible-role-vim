@@ -1,0 +1,11 @@
+---
+
+- name: Converge
+  hosts: all
+  become: true
+  roles:
+    - role: zerodowntime.vim
+      vim__rc: |
+        set number
+        set showbreak=+++
+        set nospell

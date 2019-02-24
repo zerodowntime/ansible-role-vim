@@ -1,0 +1,26 @@
+---
+# zerodowntime.vim/defaults/main.yml
+
+# vim__package_state: string
+# installed package state
+vim__package_state: present
+
+
+# vim__package_state: string
+# package name to install
+vim__package_name: "{{ vim__def_package_name }}"
+
+
+# vim__sets: string
+# vimrc configs
+# example:
+#  vim__rc: |
+#    set number
+#    set showbreak=+++
+#    set nospell
+vim__rc:
+
+
+# vim__env_editor: bool
+# can set env EDITOR=vim
+vim__env_editor: true
