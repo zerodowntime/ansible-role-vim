@@ -6,8 +6,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_vim_installed(host):
-    pkg = host.package("vim-minimal")
-    pkg.is_installed
+    assert host.package("vim-minimal").is_installed
 
 
 def test_config_file(host):
