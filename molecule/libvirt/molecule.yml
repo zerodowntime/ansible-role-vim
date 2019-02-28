@@ -4,19 +4,22 @@ dependency:
   options:
     role-file: molecule/shared/requirements.yml
 
+
 driver:
   name: vagrant
   provider:
-    name: virtualbox
+    name: libvirt
+
 
 lint:
   name: yamllint
   options:
     config-file: molecule/shared/.yaml_lint.yml
 
+
 platforms:
-  # https://app.vagrantup.com/boxes/search?provider=virtualbox
-  - name: v-centos7
+  # https://app.vagrantup.com/boxes/search?provider=libvirt
+  - name: "${ROLE_CI_PREFIX:-l}-centos7"
     box: centos/7
     interfaces:
       - network_name: private_network
@@ -26,6 +29,7 @@ platforms:
     provider_options:
       memory: 1024
       cpus: 1
+      uri: "'qemu:///system'"
     groups:
       - centos
 
@@ -34,6 +38,13 @@ provisioner:
   name: ansible
   playbooks:
     converge: ../shared/playbook.yml
+  config_options:
+    defaults:
+      log_path: "${CLONE_DIR:-.}/ansible.log"
+      stdout_callback: debug
+      verbosity: 2
+    diff:
+      always: true
   inventory:
     group_vars:
       ubuntu:
@@ -41,8 +52,9 @@ provisioner:
   lint:
     name: ansible-lint
 
+
 scenario:
-  name: default
+  name: libvirt
   test_sequence:
     - lint
     - destroy
@@ -55,6 +67,7 @@ scenario:
     - side_effect
     - verify
     - destroy
+
 
 verifier:
   name: testinfra
