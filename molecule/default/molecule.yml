@@ -18,11 +18,6 @@ platforms:
   # https://app.vagrantup.com/boxes/search?provider=virtualbox
   - name: v-centos7
     box: centos/7
-    interfaces:
-      - network_name: private_network
-        type: static
-        auto_config: true
-        ip: 192.168.90.205
     provider_options:
       memory: 1024
       cpus: 1

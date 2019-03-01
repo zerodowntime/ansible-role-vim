@@ -21,11 +21,6 @@ platforms:
   # https://app.vagrantup.com/boxes/search?provider=libvirt
   - name: "${ROLE_CI_PREFIX:-l}-centos7"
     box: centos/7
-    interfaces:
-      - network_name: private_network
-        type: static
-        auto_config: true
-        ip: 192.168.90.205
     provider_options:
       memory: 1024
       cpus: 1
