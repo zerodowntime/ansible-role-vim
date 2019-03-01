@@ -13,7 +13,7 @@ galaxy_info:
   description: install vim editor
   company: ZeroDowntime Sp. z o.o.
   license: Apache License 2.0
-  min_ansible_version: 2.5
+  min_ansible_version: 2.7
   platforms:
     - name: EL
       versions:

@@ -11,7 +11,7 @@ Ansible role to install vim editor
 
 ## Requirements
 
-This role requires Ansible 2.5 or higher.
+This role requires Ansible 2.7 or higher.
 
 Supported platforms:
 
