@@ -20,6 +20,10 @@ Supported platforms:
     - name: EL
       versions:
         - 7
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
 ```
 
 ## Default role variables

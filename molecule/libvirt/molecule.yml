@@ -29,6 +29,15 @@ platforms:
       - centos
 
 
+  - name: "${ROLE_CI_PREFIX:-l}-ubuntu1604"
+    box: generic/ubuntu1604
+    provider_options:
+      memory: 1024
+      cpus: 1
+      uri: "'qemu:///system'"
+    groups:
+      - ubuntu
+
 provisioner:
   name: ansible
   playbooks:

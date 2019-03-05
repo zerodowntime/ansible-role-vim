@@ -1,10 +1,10 @@
 ---
-# zerodowntime.vim/vars/centos.yml
+# zerodowntime.vim/vars/ubuntu.yml
 
 # vim__vimrc_config: string
 # vimrc config file
-vim__vimrc_config: /etc/vimrc
+vim__vimrc_config: /etc/vim/vimrc
 
 # vim__def_package_name: string
 # default package name to install
-vim__def_package_name: vim-enhanced
+vim__def_package_name: vim

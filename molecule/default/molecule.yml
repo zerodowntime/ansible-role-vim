@@ -24,6 +24,16 @@ platforms:
     groups:
       - centos
 
+  - name: ubuntu16
+    # box: ubuntu/xenial64
+    box: bento/ubuntu-16.04
+    interfaces:
+      - network_name: private_network
+        type: static
+        auto_config: true
+        ip: 192.168.50.202
+    groups:
+      - ubuntu
 
 provisioner:
   name: ansible

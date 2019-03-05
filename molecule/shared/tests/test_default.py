@@ -6,11 +6,23 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_vim_installed(host):
-    assert host.package("vim-minimal").is_installed
+    distribution = host.system_info.distribution
+    if distribution == 'centos':
+        pkg = 'vim-enhanced'
+    elif distribution == 'ubuntu':
+        pkg = 'vim'
+
+    assert host.package(pkg).is_installed
 
 
 def test_config_file(host):
-    f = host.file('/etc/vimrc')
+    distribution = host.system_info.distribution
+    if distribution == 'centos':
+        fname = '/etc/vimrc'
+    elif distribution == 'ubuntu':
+        fname = '/etc/vim/vimrc'
+
+    f = host.file(fname)
 
     assert f.exists
     assert f.user == 'root'
